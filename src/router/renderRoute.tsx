@@ -1,13 +1,13 @@
-import React from "react"
-import { BrowserRouter, Switch } from "react-router-dom"
-import renderRoutesMap from "./routesMap"
+import { IRoute } from "entitys/route";
+import React from "react";
+import { BrowserRouter, Switch } from "react-router-dom";
+import renderRoutesMap from "./routesMap";
 
-const renderRoutes = (routes: Array<any>, extraProps = {}, switchProps = {} ) => {
- const route = renderRoutesMap(routes)
- return (
+const renderRoutes = (routes: Array<IRoute>, extraProps = {}, switchProps = {} ) => {
+  return (
     <BrowserRouter>
       <Switch {...switchProps}>
-        { route }
+        { renderRoutesMap(routes) }
       </Switch>
     </BrowserRouter>
   )

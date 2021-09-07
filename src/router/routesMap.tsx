@@ -1,10 +1,12 @@
-import React from "react"
-import { Route } from "react-router-dom"
-import RouteGuard from "./routeGuard"
+import { IRoute } from "entitys/route";
+import React from "react";
+import { Route } from "react-router-dom";
+import RouteGuard from "./routeGuard";
+
 const renderRoutesMap = (routes: Array<any>) => {
-  return routes.map((route: any, index: any) => {
+  return routes.map((route: IRoute, index: any) => {
       <Route key={index} path={route.path} render={props => (
-        <RouteGuard {...route} { ...props }></RouteGuard>
+        <RouteGuard  { ...props } {...route}></RouteGuard>
       )}></Route>
   })
 }
