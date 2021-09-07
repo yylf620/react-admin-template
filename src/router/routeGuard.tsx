@@ -1,25 +1,28 @@
+import { IRoute } from "entitys/route";
 import React, { Component } from "react";
 import Loadable from 'react-loadable';
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { useHistory, useLocation, withRouter } from "react-router-dom";
 import renderRoutesMap from "./routesMap";
 
 const mapStateToProps = (state: any) => (state)
 const mapDispatchToProps = (dispatch:any) => ({...dispatch})
+const history = useHistory()
+const location = useLocation()
 
-class RouteGuard extends Component{
+class RouteGuard extends Component<IRoute>{
   
   constructor(props:any) {
     super(props)
   }
 
   componentWillUnmount() {
-    let { history: { replace }, authorization, location } = this.props
+    let { authorization } = this.props
     if (authorization) {
-      replace('./')
+      history.replace('./')
     }
     if (location.pathname === '/') {
-      replace('./abc')
+      history.replace('./abc')
     }
   }
 
